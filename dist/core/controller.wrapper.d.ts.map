@@ -1,0 +1,1 @@
+{"version":3,"file":"controller.wrapper.d.ts","sourceRoot":"","sources":["../../src/core/controller.wrapper.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,QAAQ,EAAE,YAAY,EAAE,MAAM,SAAS,CAAC;AAC1D,OAAO,EAAE,YAAY,EAAE,UAAU,EAAE,MAAM,aAAa,CAAC;AAIvD,wBAAgB,cAAc,CAAC,OAAO,EAAE,YAAY,EAAE,WAAW,GAAE,UAAU,EAAO,IACpE,KAAK,OAAO,EAAE,KAAK,QAAQ,EAAE,MAAM,YAAY,6DAmC9D"}
