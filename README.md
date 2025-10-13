@@ -5,12 +5,17 @@
 It provides an intuitive structure for controllers, middleware, and validation using Zod — all designed to keep your code clean and predictable.
 
 
-## 🚀 Installation
+## 🚀 Project creation
 
 ```bash
-npm install naft
+npm install -g naft
 ````
-
+```bash
+npx naft create-app test-app
+````
+```bash
+cd ./test-app
+````
 ---
 
 ## ⚡ Quick Example
