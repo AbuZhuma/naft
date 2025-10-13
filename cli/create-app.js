@@ -8,17 +8,17 @@ const __dirname = path.dirname(__filename);
 
 export async function createApp(projectName) {
   if (!projectName) {
-    console.error("❌ Укажите имя проекта: npx naft create-app my-app");
+    console.error("❌ Enter the name of the project: npx naft create-app my-app");
     process.exit(1);
   }
 
   const projectPath = path.resolve(process.cwd(), projectName);
   if (fs.existsSync(projectPath)) {
-    console.error("❌ Папка уже существует:", projectPath);
+    console.error("❌ The folder already exists.:", projectPath);
     process.exit(1);
   }
 
-  console.log(`📦 Создаю проект "${projectName}"...`);
+  console.log(`📦 Creating a project "${projectName}"...`);
 
   const templatePath = path.join(__dirname, "../templates/default");
   await fs.copy(templatePath, projectPath); 
@@ -46,9 +46,9 @@ export async function createApp(projectName) {
 
   fs.writeFileSync(path.join(projectPath, "package.json"), JSON.stringify(packageJson, null, 2));
 
-  console.log("📥 Устанавливаю зависимости...");
+  console.log("📥 Establishing dependencies...");
   execSync("npm install", { stdio: "inherit", cwd: projectPath });
 
-  console.log(`✅ Проект "${projectName}" успешно создан!`);
+  console.log(`✅ Project "${projectName}" successfully created!`);
   console.log(`\n👉 cd ${projectName}\n👉 npm run dev\n`);
 }
