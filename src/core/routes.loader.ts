@@ -27,10 +27,8 @@ export async function loadRoutesFromDir(
   const middlewareFile = files.find(f => f.toLowerCase() === "middlewares.ts");
   if (middlewareFile) {
     const mwModule = await import(path.join(dir, middlewareFile));
-    if ("middlewares" in mwModule) {
-      if (Array.isArray(mwModule.middlewares)) {
-        currentMiddlewares = mwModule.middlewares; 
-      }
+    if ("middlewares" in mwModule && Array.isArray(mwModule.middlewares)) {
+      currentMiddlewares = mwModule.middlewares;
     }
   }
 
@@ -48,12 +46,12 @@ export async function loadRoutesFromDir(
     if (fileName === "middlewares") continue;
 
     const parts = fileName.split(".");
-    const methodPart = parts[0];
-
+    const methodPart = parts.shift(); 
     if (!ALLOWED_METHODS.includes(methodPart as HttpMethod)) continue;
 
-    const method = methodPart.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE";
-    const pathSegments = parts.slice(1).map(convertPathSegment);
+    const method = methodPart?.toUpperCase() as "GET" | "POST" | "PUT" | "DELETE";
+
+    const pathSegments = parts.map(convertPathSegment);
 
     const routeModule = await import(fullPath);
     const handler = routeModule.controller;
@@ -64,12 +62,8 @@ export async function loadRoutesFromDir(
     }
 
     const routeMiddlewares: Middleware[] = [...currentMiddlewares];
-    if (routeModule.middlewares) {
-      routeMiddlewares.push(...routeModule.middlewares);
-    }
-    if (routeModule.schema) {
-      routeMiddlewares.push(validateBody(routeModule.schema));
-    }
+    if (routeModule.middlewares) routeMiddlewares.push(...routeModule.middlewares);
+    if (routeModule.schema) routeMiddlewares.push(validateBody(routeModule.schema));
 
     const routePath = "/" + [prefix, ...pathSegments].filter(Boolean).join("/");
 
