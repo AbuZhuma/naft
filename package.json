@@ -1,6 +1,6 @@
 {
       "name": "naft",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "description": "Minimalist Node.js framework with auto-routing",
       "type": "module",
       "main": "./dist/index.js",
