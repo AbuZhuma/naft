@@ -27,7 +27,7 @@ export async function createApp(projectName) {
     name: projectName,
     version: "1.0.0",
     type: "module",
-    scripts: { dev: "ts-node src/app.ts" },
+    scripts: { dev: "nodemon --watch src --ext ts --exec \"node --loader ts-node/esm src/app.ts\"" },
     dependencies: {
       naft: "file:../naft",
       express: "^4.19.2",
@@ -38,6 +38,8 @@ export async function createApp(projectName) {
       typescript: "^5.6.3",
       zod: "^4.1.12",
       "ts-node": "^10.9.2",
+      "nodemon": "^3.1.10",
+      "ts-node-dev": "^2.0.0",
       "@types/node": "^20.5.7",
       "@types/express": "^4.17.21",
       "@types/cors": "^2.8.13"
